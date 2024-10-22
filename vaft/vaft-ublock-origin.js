@@ -369,6 +369,7 @@ twitch-videoad.js text/javascript
         if (streamInfo.EncodingsM3U8Cache[playerType].Resolution != resolutionInfo.Resolution ||
             streamInfo.EncodingsM3U8Cache[playerType].RequestTime < Date.now() - EncodingCacheTimeout) {
             console.log(`Blocking ads (type:${playerType}, resolution:${resolutionInfo.Resolution}, frameRate:${resolutionInfo.FrameRate}, qualityOverride:${qualityOverride})`);
+            setTimeout(postMessage({key: 'PauseResumePlayer'}), 500);
         }
         streamInfo.EncodingsM3U8Cache[playerType].RequestTime = Date.now();
         streamInfo.EncodingsM3U8Cache[playerType].Value = encodingsM3u8;
